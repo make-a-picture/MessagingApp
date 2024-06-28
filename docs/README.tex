@@ -1,0 +1,46 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+\usepackage{enumerate}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Platform-Independent Messaging App}
+\author{Kyle McGrath}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+In 1994, Shor's algorithm was invented thus creating a theoretical efficient discrete logarithm that could be used to calculate encryption and decryption keys for various cryptographic methods including the assymmetric cryptographic method used in Public Key Infrastructure (PKI). This PKI is used to negotiate keys used in the block cipher that secures communication in SSL/TLS, thus Shor's algorithm threatens to render SSL/TLS communication over the wire unsecured. I propose to create a platform-independent messaging application using React Native for the frontend with an infrastructure using cloud servers.
+
+\section{Logging}
+Each time a message is sent to a server, the server sends a copy of the message to the recipient and another to a logging server. Depending on which version of the app you use, there are different ways the data is stored:
+\begin{enumerate}[(a)]
+\item In the free server, the logging server simply uses a relational database to store the message. 
+\item In a premium version, the logging server splits the message up in into $n$ distinct portions that are stored on separate servers in Binary JSON (BSON) documents that are encrypted. 
+\end{enumerate}
+
+\section{Open Source Packages}
+
+\begin{enumerate}[(a)]
+    \item \textbf{Post-Quantum VPN}: VPN that uses an API key for a number of cloud platform providers to create a secure line of communication between clients to access the internet.
+    \item \textbf{RAID-like Data Storage} Package that implements a server that receives data and processes it by dividing the data into portions, assigning a document id, and storing the portions of the data in different servers using BSON and a NoSQL server. Storing the data spread across multiple servers in different locations makes the task of decrypting the data more difficult as it requires physical access to multiple secure locations. 
+    \item \textbf{Integrity Verification, and Update}: A package that uses hashing algorithms to verify if bytecode has been altered, by sending bytecode to a remote server over a connection secured by post-quantum TLS for verification. In the case that the bytecode has been compromised, the client downloads the corrected bytecode.
+    \item \textbf{Over-the-Air Application}: A package that downloads bytecode from a remote server to ensure that the app is always up-to-date. The client on the mobile device has a setting to decide whether it uses an offline copy of the bytecode or whether it automatically downloads an online version at runtime.
+\end{enumerate}
+
+
+
+
+
+\end{document}
