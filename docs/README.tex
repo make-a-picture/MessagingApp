@@ -21,14 +21,18 @@
 \maketitle
 
 \section{Introduction}
-In 1994, Shor's algorithm was invented thus creating a theoretical efficient discrete logarithm that could be used to calculate encryption and decryption keys for various cryptographic methods including the assymmetric cryptographic method used in Public Key Infrastructure (PKI). This PKI is used to negotiate keys used in the block cipher that secures communication in SSL/TLS, thus Shor's algorithm threatens to render SSL/TLS communication over the wire unsecured. I propose to create a platform-independent messaging application using React Native for the frontend with an infrastructure using cloud servers. I intend on proposing a partnership with NSA (www.nsa.gov) and Proton (proton.me).
+In 1994, Shor's algorithm was invented thus creating a theoretical efficient discrete logarithm that could be used to calculate encryption and decryption keys for various cryptographic methods including the assymmetric cryptographic method used in Public Key Infrastructure (PKI). This PKI is used to negotiate keys used in the block cipher that secures communication in SSL/TLS, thus Shor's algorithm threatens to render SSL/TLS communication over the wire unsecured. I propose to create a platform-independent messaging application using React Native for the frontend with an infrastructure using cloud servers.
 
 \section{Logging}
-Each time a message is sent to a server, the server sends a copy of the message to the recipient and another to a logging server. Depending on which version of the app you use, there are different ways the data is stored:
+Each time a message is sent to a server, the server sends a copy of the message to the recipient and another to an immutable logging server. Depending on which version of the app you use, there are different ways the data is stored:
 \begin{enumerate}[(a)]
 \item In the free server, the logging server simply uses a relational database to store the message. 
 \item In a premium version, the logging server splits the message up in into $n$ distinct portions that are stored on separate servers in Binary JSON (BSON) documents that are encrypted. 
 \end{enumerate}
+
+\section{Production Infrastructure}
+- multiregional hot? cold? backups of a local regional server containing logs
+-
 
 \section{Open Source Packages}
 
@@ -39,8 +43,23 @@ Each time a message is sent to a server, the server sends a copy of the message 
     \item \textbf{Over-the-Air Application}: A package that downloads bytecode from a remote server to ensure that the app is always up-to-date. The client on the mobile device has a setting to decide whether it uses an offline copy of the bytecode or whether it automatically downloads an online version at runtime.
 \end{enumerate}
 
+\section{Emergent Threat Detection}
+In the case that a private key is observed thus collapsing the waveform (or probability distribution) to a single private key, ICMP traffic is used to notify a Security Information and Event Management (SIEM) server to alert authorities to the issue.
 
 
+\section{Penetration Testing the Messaging App}
+
+\section{Development Environment}
+
+We intend on using Cloudflare, Amazon Web Service, and Google Cloud Platform cloud servers for all development to secure the development process.
+
+\subsection{Version Control Server} git-scm
+
+\subsection{CI/CD Server} GitHub Action Runner
+
+\subsection{Development Server}
+
+\subsection{Backup System} We intend on using S3 buckets to backup development data using rsync to maintain a hard immutable copy of all source code and configuration.
 
 
 \end{document}
